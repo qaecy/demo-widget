@@ -29,4 +29,9 @@ window.addEventListener("qaecyEvents", async (event) => {
     const {name, payload} = event.detail;
     console.log("Hello from Sharepoint");
     div.innerHTML = "This is from SharePoint";
+
+    if(name === "filesToSync"){
+        console.log("Widget received files to sync");
+        console.log(payload);
+    }
 })
