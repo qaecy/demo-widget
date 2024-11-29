@@ -3,15 +3,22 @@ if(parent === undefined) console.error("No Element with id 'qaecy-widget'!");
 
 const btn = document.createElement("button")
 btn.setAttribute("id", "my-test-btn");
-btn.innerHTML = "Button";
+btn.innerHTML = "Sync";
 const div = document.createElement("div")
 div.setAttribute("id", "my-content-window");
 
 parent.appendChild(btn);
 parent.appendChild(div);
 
+const syncEvent = new CustomEvent("qaecySync", () => {
+    detail: {
+        name: "syncAll"
+    }
+})
+
 btn.addEventListener("click", () => {
-    div.innerHTML = "Clicked the button";
+    div.innerHTML = "Syncing sharepoint site";
+    window.dispatchEvent(syncEvent);
 });
 
 window.addEventListener("qaecyEvents", async (event) => {
