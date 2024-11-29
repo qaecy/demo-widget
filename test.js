@@ -13,12 +13,15 @@ parent.appendChild(div);
 const syncEvent = new CustomEvent("qaecySync", {
     detail: {
       name: "syncAll",
-      payload: {},
+      payload: {
+        lastSync: "2024-11-29T09:00:00Z"
+      },
     },
 });
 
 btn.addEventListener("click", () => {
     div.innerHTML = "Syncing sharepoint site";
+    console.log(syncEvent);
     window.dispatchEvent(syncEvent);
 });
 
