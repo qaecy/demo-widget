@@ -1,5 +1,6 @@
 const parent = document.getElementById("qaecy-widget");
 if(parent === undefined) console.error("No Element with id 'qaecy-widget'!");
+console.log(parent);
 
 const btn = document.getElementById("my-test-btn");
 const div = document.getElementById("my-content-window");
