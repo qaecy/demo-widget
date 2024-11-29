@@ -10,11 +10,12 @@ div.setAttribute("id", "my-content-window");
 parent.appendChild(btn);
 parent.appendChild(div);
 
-const syncEvent = new CustomEvent("qaecySync", () => {
+const syncEvent = new CustomEvent("qaecySync", {
     detail: {
-        name: "syncAll"
-    }
-})
+      name: "syncAll",
+      payload: {},
+    },
+});
 
 btn.addEventListener("click", () => {
     div.innerHTML = "Syncing sharepoint site";
