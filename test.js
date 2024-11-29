@@ -30,6 +30,7 @@ window.addEventListener("qaecyEvents", async (event) => {
 
     if(name === "filesToSync"){
         console.log("Widget received files to sync");
+        console.log(payload);
         const fileNames = payload.files.map(f => f.name).join(",");
         div.innerHTML = `Got ${payload.files.length} files from SharePoint (${fileNames})`;
     }
