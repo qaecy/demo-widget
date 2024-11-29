@@ -1,9 +1,11 @@
 const parent = document.getElementById("qaecy-widget");
 if(parent === undefined) console.error("No Element with id 'qaecy-widget'!");
-console.log(parent);
 
-const btn = document.getElementById("my-test-btn");
-const div = document.getElementById("my-content-window");
+const btn = document.createElement("button")
+btn.setAttribute("id", "my-test-btn");
+btn.innerHTML = "Button";
+const div = document.createElement("div")
+div.setAttribute("id", "my-content-window");
 
 parent.appendChild(btn);
 parent.appendChild(div);
