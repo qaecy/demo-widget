@@ -16,16 +16,25 @@
   <script>
     const widget = document.getElementsByTagName("qaecy-widget")[0];
     
+    /** SYNC */
+
     // Example listen to sync event
     widget.addEventListener("sync", (ev) => {
       console.log("Sync");
       console.log(ev)
     });
 
+    // To be called when client has files to sync
+    setTimeout(() => {
+      widget.syncFiles([]);
+    }, 1000)
+
+    /** VIEW MODE */
+
     /** Example, set mode */
     // widget.setAttribute("mode", "chat"); // "sync"|"chat"|"resource"
 
 
   </script>
-<link rel="modulepreload" href="chunk-5Y5FTZUV.js"><link rel="modulepreload" href="chunk-F4ISFJZ5.js"><link rel="modulepreload" href="chunk-DTSCRZYF.js"><script src="main.js" type="module"></script></body>
+<link rel="modulepreload" href="chunk-ORZUNIVA.js"><link rel="modulepreload" href="chunk-F4ISFJZ5.js"><link rel="modulepreload" href="chunk-DTSCRZYF.js"><script src="main.js" type="module"></script></body>
 </html>
