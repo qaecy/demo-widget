@@ -1,1 +1,0 @@
-import{Ea as n,Fa as r,Ma as s,ra as t}from"./chunk-3GHNTN6X.js";var c=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-resource"]],decls:2,vars:0,template:function(e,a){e&1&&(n(0,"p"),s(1,"resource works!"),r())},encapsulation:2})};export{c as ResourceComponent};
