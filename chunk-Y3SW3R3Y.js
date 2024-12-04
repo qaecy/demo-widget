@@ -1,0 +1,1 @@
+import{U as t}from"./chunk-Q3FO47LP.js";var r=class e{constructor(){}getLastSync(){return console.warn("Should get actual last sync dateTime from server!"),"2024-11-29T09:00:00Z"}uploadFiles(o){console.log(o)}static \u0275fac=function(a){return new(a||e)};static \u0275prov=t({token:e,factory:e.\u0275fac,providedIn:"root"})};export{r as a};
