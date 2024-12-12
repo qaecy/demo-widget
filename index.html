@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="styles.css"></head>
   <body>
     <div style="width: 300px; height: 500px; border: 1px solid" id="container">
-      <qaecy-widget dark="true"></qaecy-widget>
+      <qaecy-widget dark="true" pid="8ca75584-1814-4db5-b88e-6e8ac9140ad6"></qaecy-widget>
       <section class="pico" style="margin-top: 20px">
         <p>Widget settings</p>
 
@@ -51,6 +51,11 @@
           </ul>
         </section>
 
+        <section>
+          <input type="text" id="project-id" placeholder="Project ID" aria-label="Project ID" value="8ca75584-1814-4db5-b88e-6e8ac9140ad6">
+        </section>
+
+
       </section>
     </div>
     <script>
@@ -61,14 +66,107 @@
 
       // Example listen to sync event
       widget.addEventListener("sync", (ev) => {
-        console.log("Sync");
-        console.log(ev);
+        console.log("Clicked sync");
+
+        // Wait 3 seconds and set list
+        setTimeout(() => {
+          const list = [
+            {
+              iri: "https://qaecy.sharepoint.com/sites/widget-test/Shared Documents/Screenshot 2024-11-13 at 17.38.08.png",
+              name: "Screenshot 2024-11-13 at 17.38.08.png",
+              size: 1710074,
+              modified: "2024-11-29T11:59:08Z",
+              created: "2024-11-29T11:59:08Z",
+              modifiedBy: {
+                id: "10032003738a66c3",
+                name: "Mads Rasmussen",
+              },
+              createdBy: {
+                id: "10032003738a66c3",
+                name: "Mads Rasmussen",
+              },
+              relativePath:
+                "/Shared Documents/Screenshot 2024-11-13 at 17.38.08.png",
+              data: (url) => "x",
+            },
+            {
+              iri: "https://qaecy.sharepoint.com/sites/widget-test/Shared Documents/queryResults (2).json",
+              name: "queryResults (2).json",
+              size: 3144491,
+              modified: "2024-11-29T12:49:04Z",
+              created: "2024-11-29T12:49:04Z",
+              modifiedBy: {
+                id: "10032003738a66c3",
+                name: "Mads Rasmussen",
+              },
+              createdBy: {
+                id: "10032003738a66c3",
+                name: "Mads Rasmussen",
+              },
+              relativePath: "/Shared Documents/queryResults (2).json",
+              data: (url) => "y",
+            },
+          ];
+          widget.setSyncList(list);
+        }, 3000);
       });
 
-      // To be called when client has files to sync
-      setTimeout(() => {
-        widget.syncFiles([]);
-      }, 1000);
+      /** MEMBERS/NAMES */
+      widget.addEventListener("listOrganizationMembers", (ev) => {
+        console.log("Clicked list org members");
+
+        setTimeout(() => {
+          widget.setOrganizationMembers([{
+            id: "FetCKKhG02hCCuihIwdhY9VudJr2",
+            name: "Mads"
+          },{
+            id: "bb",
+            name: "Manos"
+          },{
+            id: "cc",
+            name: "Philipp"
+          },{
+            id: "dd",
+            name: "Christian"
+          },{
+            id: "ee",
+            name: "Ali"
+          },{
+            id: "ff",
+            name: "Connie"
+          }])
+        }, 2000);
+      });
+      widget.addEventListener("organizationNameRequest", () => {
+        setTimeout(() => widget.setOrganizationName("QAECY AG"), 1500);
+      });
+
+      widget.addEventListener("listProjectMembers", (ev) => {
+        console.log("Clicked list proj members");
+
+        setTimeout(() => {
+          widget.setOrganizationMembers([{
+            id: "aa",
+            name: "Mads"
+          },{
+            id: "bb",
+            name: "Manos"
+          }])
+        }, 2000);
+      });
+      widget.addEventListener("projectNameRequest", () => {
+        setTimeout(() => widget.setProjectName("QAECY MVP"), 1500);
+      });
+
+
+      /** PROJECT ID */
+      const idInput = document.getElementById("project-id");
+      idInput.addEventListener("keyup", (ev) => {
+        widget.setAttribute("pid", idInput.value);
+      });
+      idInput.addEventListener("paste", (ev) => {
+        widget.setAttribute("pid", idInput.value);
+      });
 
       /** VIEW MODE */
 
@@ -82,12 +180,20 @@
       const demoPromptsSection = document.getElementById("demo-prompts");
 
       const widthInput = document.getElementById("parent-width");
-      widthInput.addEventListener('change', () => container.style.width = `${widthInput.value}px`);
+      widthInput.addEventListener(
+        "change",
+        () => (container.style.width = `${widthInput.value}px`)
+      );
       const heightInput = document.getElementById("parent-height");
-      heightInput.addEventListener('change', () => container.style.height = `${heightInput.value}px`);
+      heightInput.addEventListener(
+        "change",
+        () => (container.style.height = `${heightInput.value}px`)
+      );
 
-      const darkModeSwitch = document.getElementById("darkMode")
-      darkModeSwitch.addEventListener('change', () => widget.setAttribute("dark", darkModeSwitch.checked));
+      const darkModeSwitch = document.getElementById("darkMode");
+      darkModeSwitch.addEventListener("change", () =>
+        widget.setAttribute("dark", darkModeSwitch.checked)
+      );
 
       const modeDropdown = document.getElementById("mode");
       modeDropdown.addEventListener("click", (event) => {
@@ -95,9 +201,9 @@
           const selectedOption = event.target.dataset.value;
           widget.setAttribute("mode", selectedOption);
 
-          if(selectedOption === "chat"){
+          if (selectedOption === "chat") {
             demoPromptsSection.style.display = "block";
-          }else{
+          } else {
             demoPromptsSection.style.display = "none";
           }
 
@@ -106,5 +212,5 @@
         }
       });
     </script>
-  <link rel="modulepreload" href="chunk-Y3SW3R3Y.js"><link rel="modulepreload" href="chunk-5Z7OZGZZ.js"><link rel="modulepreload" href="chunk-QTSAKZO6.js"><link rel="modulepreload" href="chunk-MSYCYUL2.js"><link rel="modulepreload" href="chunk-QJGMQPXR.js"><link rel="modulepreload" href="chunk-Q3FO47LP.js"><script src="main.js" type="module"></script></body>
+  <link rel="modulepreload" href="chunk-4I4WCNMY.js"><link rel="modulepreload" href="chunk-EJSTA3HW.js"><link rel="modulepreload" href="chunk-HIDQVL64.js"><link rel="modulepreload" href="chunk-EFR2NBDC.js"><link rel="modulepreload" href="chunk-XX4G4BOT.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-IDJ2CURU.js"><link rel="modulepreload" href="chunk-QNXI7QI5.js"><link rel="modulepreload" href="chunk-NIQNCP7X.js"><link rel="modulepreload" href="chunk-43KZBEMJ.js"><script src="main.js" type="module"></script></body>
 </html>
