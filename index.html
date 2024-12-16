@@ -128,7 +128,7 @@
       });
 
       /** MEMBERS/NAMES */
-      widget.addEventListener("listOrganizationMembers", (ev) => {
+      widget.addEventListener("organizationMembersRequest", (ev) => {
         console.log("Clicked list org members");
 
         setTimeout(() => {
@@ -164,7 +164,7 @@
         setTimeout(() => widget.setOrganizationName("QAECY AG"), 1500);
       });
 
-      widget.addEventListener("listProjectMembers", (ev) => {
+      widget.addEventListener("projectMembersRequest", (ev) => {
         console.log("Clicked list proj members");
 
         setTimeout(() => {
