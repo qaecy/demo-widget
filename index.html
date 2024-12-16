@@ -32,6 +32,12 @@
           Dark mode
         </label>
 
+        <!-- Demo mode -->
+        <label>
+          <input id="demoMode" name="demoMode" type="checkbox" role="switch">
+          Demo mode
+        </label>
+
         <!-- Mode -->
         <details class="dropdown" id="mode">
           <summary>Mode</summary>
@@ -54,13 +60,23 @@
         <section>
           <input type="text" id="project-id" placeholder="Project ID" aria-label="Project ID" value="8ca75584-1814-4db5-b88e-6e8ac9140ad6">
         </section>
-
-
       </section>
     </div>
     <script>
       const container = document.getElementById("container");
       const widget = document.getElementsByTagName("qaecy-widget")[0];
+
+      widget.setAttribute("config", `{
+        \"apiKey\": \"AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU\",
+        \"appId\": \"1:734737865998:web:27bdf509f86c51db708b5f\",
+        \"measurementId\": \"G-0QWLTN7GWX\"
+      }`)
+
+      // setTimeout(() => widget.init({
+      //   apiKey: "AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU",
+      //   appId: "1:734737865998:web:27bdf509f86c51db708b5f",
+      //   measurementId: "G-0QWLTN7GWX",
+      // }), 100)
 
       /** SYNC */
 
@@ -116,25 +132,32 @@
         console.log("Clicked list org members");
 
         setTimeout(() => {
-          widget.setOrganizationMembers([{
-            id: "FetCKKhG02hCCuihIwdhY9VudJr2",
-            name: "Mads"
-          },{
-            id: "bb",
-            name: "Manos"
-          },{
-            id: "cc",
-            name: "Philipp"
-          },{
-            id: "dd",
-            name: "Christian"
-          },{
-            id: "ee",
-            name: "Ali"
-          },{
-            id: "ff",
-            name: "Connie"
-          }])
+          widget.setOrganizationMembers([
+            {
+              id: "FetCKKhG02hCCuihIwdhY9VudJr2",
+              name: "Mads",
+            },
+            {
+              id: "bb",
+              name: "Manos",
+            },
+            {
+              id: "cc",
+              name: "Philipp",
+            },
+            {
+              id: "dd",
+              name: "Christian",
+            },
+            {
+              id: "ee",
+              name: "Ali",
+            },
+            {
+              id: "ff",
+              name: "Connie",
+            },
+          ]);
         }, 2000);
       });
       widget.addEventListener("organizationNameRequest", () => {
@@ -145,19 +168,21 @@
         console.log("Clicked list proj members");
 
         setTimeout(() => {
-          widget.setOrganizationMembers([{
-            id: "aa",
-            name: "Mads"
-          },{
-            id: "bb",
-            name: "Manos"
-          }])
+          widget.setOrganizationMembers([
+            {
+              id: "aa",
+              name: "Mads",
+            },
+            {
+              id: "bb",
+              name: "Manos",
+            },
+          ]);
         }, 2000);
       });
       widget.addEventListener("projectNameRequest", () => {
         setTimeout(() => widget.setProjectName("QAECY MVP"), 1500);
       });
-
 
       /** PROJECT ID */
       const idInput = document.getElementById("project-id");
@@ -195,6 +220,13 @@
         widget.setAttribute("dark", darkModeSwitch.checked)
       );
 
+      const demoModeSwitch = document.getElementById("demoMode");
+      demoModeSwitch.addEventListener("change", () =>
+      {
+        widget.setAttribute("demo", demoModeSwitch.checked)
+      }
+      );
+
       const modeDropdown = document.getElementById("mode");
       modeDropdown.addEventListener("click", (event) => {
         if (event.target.tagName === "LI") {
@@ -212,5 +244,5 @@
         }
       });
     </script>
-  <link rel="modulepreload" href="chunk-4I4WCNMY.js"><link rel="modulepreload" href="chunk-EJSTA3HW.js"><link rel="modulepreload" href="chunk-HIDQVL64.js"><link rel="modulepreload" href="chunk-EFR2NBDC.js"><link rel="modulepreload" href="chunk-XX4G4BOT.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-IDJ2CURU.js"><link rel="modulepreload" href="chunk-QNXI7QI5.js"><link rel="modulepreload" href="chunk-NIQNCP7X.js"><link rel="modulepreload" href="chunk-43KZBEMJ.js"><script src="main.js" type="module"></script></body>
+  <link rel="modulepreload" href="chunk-FKPCN46I.js"><link rel="modulepreload" href="chunk-EJSTA3HW.js"><link rel="modulepreload" href="chunk-QNXI7QI5.js"><link rel="modulepreload" href="chunk-4I4WCNMY.js"><link rel="modulepreload" href="chunk-HIDQVL64.js"><link rel="modulepreload" href="chunk-TU6ATKKZ.js"><link rel="modulepreload" href="chunk-OYPTGKJ4.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-IDJ2CURU.js"><link rel="modulepreload" href="chunk-NIQNCP7X.js"><script src="main.js" type="module"></script></body>
 </html>
