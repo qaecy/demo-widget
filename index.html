@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
   <link rel="stylesheet" href="styles.css"></head>
   <body>
-    <div style="width: 300px; height: 500px; border: 1px solid" id="container">
+    <div style="width: 300px; height: 500px; border: 1px solid; margin: 50px;" id="container">
       <qaecy-widget dark="true" pid="8ca75584-1814-4db5-b88e-6e8ac9140ad6"></qaecy-widget>
       <section class="pico" style="margin-top: 20px">
         <p>Widget settings</p>
@@ -65,6 +65,7 @@
     <script>
       const container = document.getElementById("container");
       const widget = document.getElementsByTagName("qaecy-widget")[0];
+      const idInput = document.getElementById("project-id");
 
       widget.setAttribute("config", `{
         \"apiKey\": \"AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU\",
@@ -127,14 +128,18 @@
         }, 3000);
       });
 
-      /** MEMBERS/NAMES */
-      widget.addEventListener("organizationMembersRequest", (ev) => {
-        console.log("Clicked list org members");
+      /** ORGANIZATION INFO */
+      widget.addEventListener("organizationInfoRequest", (ev) => {
+        console.log("Requested org info");
 
         setTimeout(() => {
-          widget.setOrganizationMembers([
+          widget.setOrganizationInfo({
+            id: "xx",
+            name: "QAECY AG",
+            admins: [],
+            members: [
             {
-              id: "FetCKKhG02hCCuihIwdhY9VudJr2",
+              id: "sBEZ8LLneLS8A0PUxERkJdCH0Q23",
               name: "Mads",
             },
             {
@@ -157,35 +162,55 @@
               id: "ff",
               name: "Connie",
             },
-          ]);
+          ]
+          });
         }, 2000);
       });
-      widget.addEventListener("organizationNameRequest", () => {
-        setTimeout(() => widget.setOrganizationName("QAECY AG"), 1500);
-      });
 
-      widget.addEventListener("projectMembersRequest", (ev) => {
-        console.log("Clicked list proj members");
+      /** PROJECT INFO */
+      widget.addEventListener("projectInfoRequest", (ev) => {
+        console.log("Requested project info");
 
         setTimeout(() => {
-          widget.setOrganizationMembers([
+          widget.setProjectInfo({
+            id: idInput.value,
+            name: "QAECY MVP",
+            admins: [{
+              id: "sBEZ8LLneLS8A0PUxERkJdCH0Q23",
+              name: "Mads",
+            }],
+            syncers: [],
+            members: [
             {
-              id: "aa",
+              id: "sBEZ8LLneLS8A0PUxERkJdCH0Q23",
               name: "Mads",
             },
             {
               id: "bb",
               name: "Manos",
             },
-          ]);
+            {
+              id: "cc",
+              name: "Philipp",
+            },
+            {
+              id: "dd",
+              name: "Christian",
+            },
+            {
+              id: "ee",
+              name: "Ali",
+            },
+            {
+              id: "ff",
+              name: "Connie",
+            },
+          ]
+          });
         }, 2000);
-      });
-      widget.addEventListener("projectNameRequest", () => {
-        setTimeout(() => widget.setProjectName("QAECY MVP"), 1500);
       });
 
       /** PROJECT ID */
-      const idInput = document.getElementById("project-id");
       idInput.addEventListener("keyup", (ev) => {
         widget.setAttribute("pid", idInput.value);
       });
@@ -244,5 +269,5 @@
         }
       });
     </script>
-  <link rel="modulepreload" href="chunk-FKPCN46I.js"><link rel="modulepreload" href="chunk-EJSTA3HW.js"><link rel="modulepreload" href="chunk-QNXI7QI5.js"><link rel="modulepreload" href="chunk-4I4WCNMY.js"><link rel="modulepreload" href="chunk-HIDQVL64.js"><link rel="modulepreload" href="chunk-TU6ATKKZ.js"><link rel="modulepreload" href="chunk-OYPTGKJ4.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-IDJ2CURU.js"><link rel="modulepreload" href="chunk-NIQNCP7X.js"><script src="main.js" type="module"></script></body>
+  <link rel="modulepreload" href="chunk-N5P63IG4.js"><link rel="modulepreload" href="chunk-4X3QZCC7.js"><link rel="modulepreload" href="chunk-CE2NDEDI.js"><link rel="modulepreload" href="chunk-TO2Z4CYW.js"><link rel="modulepreload" href="chunk-KCKIPAXJ.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-SDM4SVIM.js"><link rel="modulepreload" href="chunk-N7EGYON4.js"><link rel="modulepreload" href="chunk-6PXZ4SUT.js"><link rel="modulepreload" href="chunk-4CTTNU6J.js"><script src="main.js" type="module"></script></body>
 </html>

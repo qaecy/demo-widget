@@ -1,0 +1,1 @@
+import{Vb as r,eb as t,yb as n,zb as s}from"./chunk-RUKLDERM.js";var c=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-resource"]],decls:2,vars:0,template:function(e,i){e&1&&(n(0,"p"),r(1,"resource works!"),s())},encapsulation:2})};export{c as ResourceComponent};
