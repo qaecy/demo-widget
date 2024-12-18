@@ -82,8 +82,8 @@
       /** SYNC */
 
       // Example listen to sync event
-      widget.addEventListener("sync", (ev) => {
-        console.log("Clicked sync");
+      widget.addEventListener("syncRequest", (ev) => {
+        console.log("Requested sync");
 
         // Wait 3 seconds and set list
         setTimeout(() => {
@@ -104,7 +104,10 @@
               },
               relativePath:
                 "/Shared Documents/Screenshot 2024-11-13 at 17.38.08.png",
-              data: (url) => "x",
+              data: async (url) => {
+                const encoder = new TextEncoder();
+                return encoder.encode("Hello world");
+              },
             },
             {
               iri: "https://qaecy.sharepoint.com/sites/widget-test/Shared Documents/queryResults (2).json",
@@ -121,7 +124,10 @@
                 name: "Mads Rasmussen",
               },
               relativePath: "/Shared Documents/queryResults (2).json",
-              data: (url) => "y",
+              data: async (url) => {
+                const encoder = new TextEncoder();
+                return encoder.encode("Hello world 2");
+              },
             },
           ];
           widget.setSyncList(list);
@@ -269,5 +275,5 @@
         }
       });
     </script>
-  <link rel="modulepreload" href="chunk-7OMYUQJ7.js"><link rel="modulepreload" href="chunk-FPUSEAAL.js"><link rel="modulepreload" href="chunk-RV55OYRA.js"><link rel="modulepreload" href="chunk-NB62U4HH.js"><link rel="modulepreload" href="chunk-TKI237CY.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-LGU3LPP7.js"><link rel="modulepreload" href="chunk-JQDHF4RM.js"><link rel="modulepreload" href="chunk-4ESSD6YE.js"><link rel="modulepreload" href="chunk-LZOT4WJL.js"><script src="main.js" type="module"></script></body>
+  <link rel="modulepreload" href="chunk-Z7JME7G2.js"><link rel="modulepreload" href="chunk-FPUSEAAL.js"><link rel="modulepreload" href="chunk-RV55OYRA.js"><link rel="modulepreload" href="chunk-NB62U4HH.js"><link rel="modulepreload" href="chunk-TKI237CY.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-LGU3LPP7.js"><link rel="modulepreload" href="chunk-JQDHF4RM.js"><link rel="modulepreload" href="chunk-4ESSD6YE.js"><link rel="modulepreload" href="chunk-LZOT4WJL.js"><script src="main.js" type="module"></script></body>
 </html>
