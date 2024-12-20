@@ -38,6 +38,12 @@
           Demo mode
         </label>
 
+        <!-- Menu always on? -->
+        <label>
+          <input id="menuAlwaysOn" name="menuAlwaysOn" type="checkbox" role="switch">
+          Menu always on
+        </label>
+
         <!-- Mode -->
         <details class="dropdown" id="mode">
           <summary>Mode</summary>
@@ -67,17 +73,36 @@
       const widget = document.getElementsByTagName("qaecy-widget")[0];
       const idInput = document.getElementById("project-id");
 
-      widget.setAttribute("config", `{
-        \"apiKey\": \"AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU\",
-        \"appId\": \"1:734737865998:web:27bdf509f86c51db708b5f\",
-        \"measurementId\": \"G-0QWLTN7GWX\"
-      }`)
-
-      // setTimeout(() => widget.init({
-      //   apiKey: "AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU",
-      //   appId: "1:734737865998:web:27bdf509f86c51db708b5f",
-      //   measurementId: "G-0QWLTN7GWX",
-      // }), 100)
+      const options = {
+          "auth": {
+              "providers": [
+                  "microsoft.com"
+              ],
+              "persistence": "LOCAL"
+          },
+          "config": {
+            "apiKey": "AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU",
+            "appId": "1:734737865998:web:27bdf509f86c51db708b5f",
+            "measurementId": "G-0QWLTN7GWX"
+          },
+          "menuAlwaysVisible": false,
+          "menuOptions": [
+              "ASSISTANT",
+              "SYNC_OVERVIEW",
+              "SIGN_OUT"
+          ],
+          "hostApp": "SharePoint"
+      }
+      
+      // Load options once the widget is ready
+      const timer = setInterval(() => {
+        try{
+          widget.options(options);
+          clearInterval(timer);
+        }catch(err){
+          //
+        }
+      },5)
 
       /** SYNC */
 
@@ -261,6 +286,14 @@
       }
       );
 
+      const menuAlwaysOnSwitch = document.getElementById("menuAlwaysOn");
+      menuAlwaysOnSwitch.addEventListener("change", () =>
+      {
+        options.menuAlwaysVisible = menuAlwaysOnSwitch.checked;
+        widget.options(options);
+      }
+      );
+
       const modeDropdown = document.getElementById("mode");
       modeDropdown.addEventListener("click", (event) => {
         if (event.target.tagName === "LI") {
@@ -278,5 +311,5 @@
         }
       });
     </script>
-  <link rel="modulepreload" href="chunk-G2A4SBYA.js"><link rel="modulepreload" href="chunk-DDUTNCOH.js"><link rel="modulepreload" href="chunk-TMUR5DM7.js"><link rel="modulepreload" href="chunk-VTC5VBLQ.js"><link rel="modulepreload" href="chunk-742LSMAY.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-HGAZPJKK.js"><link rel="modulepreload" href="chunk-IXIZGAXR.js"><link rel="modulepreload" href="chunk-7SO5AXLQ.js"><link rel="modulepreload" href="chunk-RDVTOQXA.js"><script src="main.js" type="module"></script></body>
+  <link rel="modulepreload" href="chunk-BFYUPTND.js"><link rel="modulepreload" href="chunk-DDUTNCOH.js"><link rel="modulepreload" href="chunk-TMUR5DM7.js"><link rel="modulepreload" href="chunk-VTC5VBLQ.js"><link rel="modulepreload" href="chunk-742LSMAY.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-HGAZPJKK.js"><link rel="modulepreload" href="chunk-Y4DP6GLA.js"><link rel="modulepreload" href="chunk-7SO5AXLQ.js"><link rel="modulepreload" href="chunk-RDVTOQXA.js"><script src="main.js" type="module"></script></body>
 </html>
