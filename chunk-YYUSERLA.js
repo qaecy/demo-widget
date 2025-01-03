@@ -1,1 +1,0 @@
-import{Ab as s,Wb as r,fb as t,zb as n}from"./chunk-FOUR5RWC.js";var c=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-resource"]],decls:2,vars:0,template:function(e,i){e&1&&(n(0,"p"),r(1,"resource works!"),s())},encapsulation:2})};export{c as ResourceComponent};
