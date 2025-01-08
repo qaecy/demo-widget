@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
   <link rel="stylesheet" href="styles.css"></head>
   <body>
-    <div style="width: 300px; height: 500px; border: 1px solid; margin: 50px;" id="container">
+    <div style="width: 300px; height: 500px; border: 1px solid; margin: 50px" id="container">
       <qaecy-widget dark="true" pid="8ca75584-1814-4db5-b88e-6e8ac9140ad6"></qaecy-widget>
       <section class="pico" style="margin-top: 20px">
         <p>Widget settings</p>
@@ -64,6 +64,7 @@
         </section>
 
         <section>
+          <label>Project id</label>
           <input type="text" id="project-id" placeholder="Project ID" aria-label="Project ID" value="8ca75584-1814-4db5-b88e-6e8ac9140ad6">
         </section>
       </section>
@@ -74,36 +75,63 @@
       const idInput = document.getElementById("project-id");
 
       const options = {
-          "auth": {
-              "providers": [
-                  "microsoft.com"
-              ],
-              "persistence": "LOCAL"
-          },
-          "config": {
-            "apiKey": "AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU",
-            "appId": "1:734737865998:web:27bdf509f86c51db708b5f",
-            "measurementId": "G-0QWLTN7GWX",
-            "useEmulator": true,
-          },
-          "menuAlwaysVisible": false,
-          "menuOptions": [
-              "ASSISTANT",
-              "SYNC_OVERVIEW",
-              "SIGN_OUT"
-          ],
-          "hostApp": "SharePoint"
-      }
-      
+        auth: {
+          providers: ["microsoft.com"],
+          persistence: "LOCAL",
+        },
+        config: {
+          apiKey: "AIzaSyBJXRDYIQ2yz6we-RLDzmAsGcxxydGuHoU",
+          appId: "1:734737865998:web:27bdf509f86c51db708b5f",
+          measurementId: "G-0QWLTN7GWX",
+          useEmulator: true,
+        },
+        menuAlwaysVisible: false,
+        menuOptions: ["ASSISTANT", "SYNC_OVERVIEW", "SIGN_OUT"],
+        hostApp: "SharePoint",
+      };
+
+      const dummyMembers = [
+        {
+          id: "aa",
+          name: "Mads",
+        },
+        {
+          id: "bb",
+          name: "Manos",
+        },
+        {
+          id: "cc",
+          name: "Philipp",
+        },
+        {
+          id: "dd",
+          name: "Christian",
+        },
+        {
+          id: "ee",
+          name: "Ali",
+        },
+        {
+          id: "ff",
+          name: "Connie",
+        },
+      ];
+
       // Load options once the widget is ready
       const timer = setInterval(() => {
-        try{
+        try {
           widget.options(options);
           clearInterval(timer);
-        }catch(err){
+        } catch (err) {
           //
         }
-      },5)
+      }, 5);
+
+      // Listen to signed in user and set id of first dummy member
+      widget.addEventListener("signedInUser", (ev) => {
+        console.log("Signed in user", ev.detail);
+        dummyMembers[0].id = ev.detail;
+      });
 
       /** SYNC */
 
@@ -168,36 +196,8 @@
           widget.setOrganizationInfo({
             id: "xx",
             name: "QAECY AG",
-            admins: [{
-              id: "brHu6nqnaIz6AEcuWO5Lk6zuUnAU",
-              name: "Mads",
-            }],
-            members: [
-            {
-              id: "brHu6nqnaIz6AEcuWO5Lk6zuUnAU",
-              name: "Mads",
-            },
-            {
-              id: "bb",
-              name: "Manos",
-            },
-            {
-              id: "cc",
-              name: "Philipp",
-            },
-            {
-              id: "dd",
-              name: "Christian",
-            },
-            {
-              id: "ee",
-              name: "Ali",
-            },
-            {
-              id: "ff",
-              name: "Connie",
-            },
-          ]
+            admins: [dummyMembers[0]],
+            members: dummyMembers,
           });
         }, 2000);
       });
@@ -210,40 +210,9 @@
           widget.setProjectInfo({
             id: idInput.value,
             name: "QAECY MVP",
-            admins: [{
-              id: "brHu6nqnaIz6AEcuWO5Lk6zuUnAU",
-              name: "Mads",
-            }],
-            syncers: [{
-              id: "brHu6nqnaIz6AEcuWO5Lk6zuUnAU",
-              name: "Mads",
-            }],
-            members: [
-            {
-              id: "brHu6nqnaIz6AEcuWO5Lk6zuUnAU",
-              name: "Mads",
-            },
-            {
-              id: "bb",
-              name: "Manos",
-            },
-            {
-              id: "cc",
-              name: "Philipp",
-            },
-            {
-              id: "dd",
-              name: "Christian",
-            },
-            {
-              id: "ee",
-              name: "Ali",
-            },
-            {
-              id: "ff",
-              name: "Connie",
-            },
-          ]
+            admins: [dummyMembers[0]],
+            syncers: dummyMembers,
+            members: dummyMembers,
           });
         }, 2000);
       });
@@ -284,19 +253,15 @@
       );
 
       const demoModeSwitch = document.getElementById("demoMode");
-      demoModeSwitch.addEventListener("change", () =>
-      {
-        widget.setAttribute("demo", demoModeSwitch.checked)
-      }
-      );
+      demoModeSwitch.addEventListener("change", () => {
+        widget.setAttribute("demo", demoModeSwitch.checked);
+      });
 
       const menuAlwaysOnSwitch = document.getElementById("menuAlwaysOn");
-      menuAlwaysOnSwitch.addEventListener("change", () =>
-      {
+      menuAlwaysOnSwitch.addEventListener("change", () => {
         options.menuAlwaysVisible = menuAlwaysOnSwitch.checked;
         widget.options(options);
-      }
-      );
+      });
 
       const modeDropdown = document.getElementById("mode");
       modeDropdown.addEventListener("click", (event) => {
@@ -315,5 +280,5 @@
         }
       });
     </script>
-  <link rel="modulepreload" href="chunk-CINTXSCS.js"><link rel="modulepreload" href="chunk-AKIG2KYL.js"><link rel="modulepreload" href="chunk-IXUZFNEG.js"><link rel="modulepreload" href="chunk-X3QUGDKV.js"><link rel="modulepreload" href="chunk-4MBBUU23.js"><link rel="modulepreload" href="chunk-PHKL5B52.js"><link rel="modulepreload" href="chunk-R6FFK4JI.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-XXAZQMQ2.js"><link rel="modulepreload" href="chunk-YQ7LY5XH.js"><script src="main.js" type="module"></script></body>
+  <link rel="modulepreload" href="chunk-ZDQ5YTN7.js"><link rel="modulepreload" href="chunk-H4TFSOTM.js"><link rel="modulepreload" href="chunk-VNIUX7X5.js"><link rel="modulepreload" href="chunk-QS47DAAE.js"><link rel="modulepreload" href="chunk-GFULRQS6.js"><link rel="modulepreload" href="chunk-DTREXXEI.js"><link rel="modulepreload" href="chunk-H4KT4JGL.js"><link rel="modulepreload" href="chunk-T3Q3DASN.js"><link rel="modulepreload" href="chunk-XXAZQMQ2.js"><link rel="modulepreload" href="chunk-YQ7LY5XH.js"><script src="main.js" type="module"></script></body>
 </html>

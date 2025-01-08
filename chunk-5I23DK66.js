@@ -1,0 +1,1 @@
+import{Nb as r,_a as t,sb as n,tb as s}from"./chunk-5CVNEI5L.js";import"./chunk-EU2KAMEK.js";import"./chunk-DAQOROHW.js";var c=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-resource"]],decls:2,vars:0,template:function(e,i){e&1&&(n(0,"p"),r(1,"resource works!"),s())},encapsulation:2})};export{c as ResourceComponent};

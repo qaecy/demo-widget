@@ -1,1 +1,0 @@
-import{Q as o,Va as t}from"./chunk-Q5IV2UU5.js";var r=class e{_darkMode=t(!1);set darkMode(a){this._darkMode.set(a)}get darkMode(){return this._darkMode}static \u0275fac=function(i){return new(i||e)};static \u0275prov=o({token:e,factory:e.\u0275fac,providedIn:"root"})};export{r as a};
